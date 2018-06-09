@@ -85,7 +85,9 @@ int main(void)
 	struct fp_dscv_dev **discovered_devs;
 	struct fp_dev *dev;
 	struct fp_print_data *data;
-
+	int finger_id;
+   	printf("Select finger_id: ");
+    	scanf("%d%*c", &finger_id);
 	r = fp_init();
 	if (r < 0) {
 		fprintf(stderr, "Failed to initialize libfprint\n");
@@ -115,7 +117,7 @@ int main(void)
 	printf("Opened device. Loading previously enrolled right index finger "
 		"data...\n");
 
-	r = fp_print_data_load(dev, RIGHT_INDEX, &data);
+	r = fp_print_data_load(dev, finger_id, &data);
 	if (r != 0) {
 		fprintf(stderr, "Failed to load fingerprint, error %d\n", r);
 		fprintf(stderr, "Did you remember to enroll your right index finger "
