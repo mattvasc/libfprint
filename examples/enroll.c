@@ -103,7 +103,10 @@ int main(void)
 	struct fp_dscv_dev **discovered_devs;
 	struct fp_dev *dev;
 	struct fp_print_data *data;
-
+	int finger_id;
+    	printf("Select finger_id: ");
+    	scanf("%d%*c", &finger_id)
+		;
 	printf("This program will enroll your right index finger, "
 		"unconditionally overwriting any right-index print that was enrolled "
 		"previously. If you want to continue, press enter, otherwise hit "
@@ -141,7 +144,7 @@ int main(void)
 	if (!data)
 		goto out_close;
 
-	r = fp_print_data_save(data, RIGHT_INDEX);
+	r = fp_print_data_save(data, finger_id);
 	if (r < 0)
 		fprintf(stderr, "Data save failed, code %d\n", r);
 
